@@ -2,6 +2,8 @@
 
 ###### A collection of my Waybar themes – have fun exploring and customizing them!
 
+
+
 ## Usability
 
 These configs are Omarchy-based, including optional Omarchy-specific modules (logo, screen recorder, update module, cava, waycat, weather,mpris).
