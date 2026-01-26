@@ -14,9 +14,15 @@ My Waybar configurations use additional packages such as wttrbar (weahter module
 yay -S waybar-module-pacman-updates-git
 yay -S wttrbar
 
-### Screenshots V1
+### Screenshot Ancient way 1.6
 
 ![](https://github.com/drunk-particles/waybar/blob/main/Ancient%20way%201.6/screenshot-2026-01-26_15-21-40.png)
 
 first creation of my own Waybar config
 include weather, mpris, hyprland/window / pacman/update module / screenrecord button stop
+
+### Screenshot Frost-Drawer 2.6
+
+![](https://github.com/drunk-particles/waybar/blob/main/Frost-Drawer%202.6/Frost-Drawer%202.6.png)
+
+im using it right now....i was kinda bored of the previous one
