@@ -26,3 +26,7 @@ include weather, mpris, hyprland/window / pacman/update module / screenrecord bu
 ![](https://github.com/drunk-particles/waybar/blob/main/Frost-Drawer%202.6/Frost-Drawer%202.6.png)
 
 im using it right now....i was kinda bored of the previous one
+
+### Screenshot modern way 1.6
+
+![](https://github.com/drunk-particles/waybar/blob/main/modern%20way%201.6/screenshot-2026-01-26_15-49-05.png)
