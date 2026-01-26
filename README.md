@@ -16,7 +16,7 @@ yay -S wttrbar
 
 ### Screenshots V1
 
-
+![](https://github.com/drunk-particles/waybar/blob/main/Ancient%20way%201.6/screenshot-2026-01-26_15-21-40.png)
 
 first creation of my own Waybar config
 include weather, mpris, hyprland/window / pacman/update module / screenrecord button stop
