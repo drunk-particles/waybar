@@ -1,0 +1,111 @@
+@import "../omarchy/current/theme/waybar.css";
+
+/* =========================================================
+   BASE STYLE
+   ========================================================= */
+* {
+  color: @foreground;
+  border: none;
+  border-radius: 10px;
+  font-family: 'CaskaydiaMono Nerd Font', 'JetBrainsMono Nerd Font';
+  font-size: 13px;
+  font-weight: 600;
+}
+
+window#waybar {
+  background-color: transparent;
+}
+
+/* =========================================================
+   GLASS ISLANDS
+   ========================================================= */
+#backlight, #battery, #bluetooth, #cpu, #memory, #network, #pulseaudio, 
+#clock, #workspaces, #custom-omarchy, #custom-update, #custom-updatespacman, 
+#custom-exit, #tray, #mpris, #custom-weather, #custom-cpucat, #custom-cava {
+  padding: 2px 14px;
+  margin: 5px 4px;
+  border-radius: 10px;
+  
+  /* GTK Compatible Glass Gradient */
+  background: linear-gradient(to bottom, rgba(255, 255, 255, 0.15), rgba(0, 0, 0, 0.35));
+  
+  border-left: 1px solid rgba(255, 255, 255, 0.1);
+  border-right: 1px solid rgba(255, 255, 255, 0.1);
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  border-bottom: 2px solid rgba(255, 255, 255, 0.2); 
+  
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
+  transition: all 0.3s ease;
+}
+
+/* =========================================================
+   AESTHETIC COLORS
+   ========================================================= */
+#network { color: #a1b6ff; }
+#bluetooth { color: #94bfff; }
+#pulseaudio { color: #a6f3e1; }
+#battery { color: #b8efb3; }
+#memory { color: #fbc6e9; }
+#cpu { color: #ffc299; }
+#custom-weather { color: #fff0b3; }
+#clock { color: #ffffff; }
+#mpris { color: #d1b3ff; }
+#custom-cava { color: #b8efb3; }
+#custom-omarchy { color: #89b4fa; font-size: 16px; }
+
+/* FIXED: Re-enforcing Waycat font for the cat module */
+#custom-cpucat { 
+  font-family: "Waycat"; 
+  color: #ffcc66; 
+  font-size: 24px; 
+}
+
+/* =========================================================
+   WORKSPACES
+   ========================================================= */
+#workspaces button {
+  color: rgba(255, 255, 255, 0.3);
+  padding: 0 6px;
+}
+
+#workspaces button.active {
+  color: #bb9af7;
+  background-color: rgba(187, 154, 247, 0.2);
+  border-bottom: 2px solid #bb9af7;
+}
+
+/* =========================================================
+   FIXED HOVER
+   ========================================================= */
+#backlight:hover, 
+#battery:hover, 
+#bluetooth:hover, 
+#cpu:hover, 
+#memory:hover, 
+#network:hover, 
+#pulseaudio:hover, 
+#clock:hover, 
+#custom-weather:hover,
+#custom-exit:hover,
+#mpris:hover,
+#custom-cpucat:hover {
+  background-color: rgba(255, 255, 255, 0.2);
+  border-bottom: 2px solid rgba(255, 255, 255, 0.5);
+}
+
+/* =========================================================
+   SPECIAL STATES
+   ========================================================= */
+#custom-exit { color: #ff7a93; }
+
+#battery.critical, #battery.warning {
+  background-color: rgba(255, 75, 110, 0.3);
+  color: #ffb3c1;
+  border-bottom: 2px solid #ff4b6e;
+}
+
+tooltip {
+  background: rgba(26, 27, 38, 0.9);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 8px;
+}

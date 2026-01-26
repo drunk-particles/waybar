@@ -1,0 +1,104 @@
+@import "../omarchy/current/theme/waybar.css";
+
+/* =========================================================
+   BASE STYLE & LAYOUT
+   ========================================================= */
+* {
+  color: @foreground;
+  border: none;
+  border-radius: 8px;
+  font-family: 'CaskaydiaMono Nerd Font', 'JetBrainsMono Nerd Font';
+  font-size: 13px;
+  font-weight: 500; /* Medium weight for cleaner look */
+}
+
+window#waybar {
+  background-color: rgba(26, 27, 38, 0.7); /* Slightly deeper frost */
+  border-radius: 12px;
+  margin: 5px;
+}
+
+/* =========================================================
+   MODULE BOXES (Unified "Island" Look)
+   ========================================================= */
+#backlight, #battery, #bluetooth, #cpu, #memory, #network, #pulseaudio, 
+#clock, #workspaces, #custom-omarchy, #custom-update, #custom-updatespacman, 
+#custom-exit, #tray, #mpris, #custom-weather, #custom-cpucat, #custom-cava {
+  background-color: rgba(47, 52, 73, 0.4); /* Muted box color */
+  padding: 2px 10px;
+  margin: 4px 2px;
+  border-radius: 8px;
+  transition: all 0.3s cubic-bezier(.55,.055,.675,.19);
+}
+
+/* =========================================================
+   CAVA MODULE (Aesthetic Visualizer)
+   ========================================================= */
+#custom-cava {
+  color: #9ece6a; /* Muted Green */
+  font-family: "Waycat", "bargraph", monospace; /* Uses visualizer-style fonts */
+  font-size: 13px;
+  padding: 0 15px;
+  background: linear-gradient(180deg, rgba(158, 206, 106, 0.1), transparent);
+  border-bottom: 1px solid rgba(158, 206, 106, 0.2);
+}
+
+/* =========================================================
+   AESTHETIC MUTED PALETTE (2026 Trends)
+   ========================================================= */
+#custom-omarchy { color: #7aa2f7; }      /* Muted Blue */
+#workspaces button { color: #565f89; }
+#workspaces button.active { color: #bb9af7; background: rgba(187, 154, 247, 0.1); }
+
+#network { color: #b4befe; }             /* Pastel Lavender */
+#bluetooth { color: #89b4fa; }           /* Sky Blue */
+#pulseaudio { color: #94e2d5; }          /* Muted Teal */
+#battery { color: #a6e3a1; }             /* Sage Green */
+#memory { color: #f5c2e7; }              /* Soft Pink */
+#cpu { color: #fab387; }                 /* Dusty Orange */
+#custom-weather { color: #f9e2af; }      /* Pale Gold */
+#clock { color: #cdd6f4; font-weight: 700; }
+#mpris { color: #cba6f7; }               /* Soft Purple */
+#custom-updatespacman { color: #f38ba8; } /* Muted Red */
+
+#custom-cpucat {
+  font-size: 22px;
+  font-family: waycat;
+  color: #e0af68; /* Calmer Ginger */
+  background: linear-gradient(180deg, rgba(158, 206, 106, 0.1), transparent);
+  border-bottom: 1px solid rgba(158, 206, 106, 0.2);
+}
+
+/* =========================================================
+   INTERACTIVE STATES
+   ========================================================= */
+#custom-exit { color: #f7768e; 
+  background: linear-gradient(180deg, rgba(158, 206, 106, 0.1), transparent);
+  border-bottom: 1px solid rgba(158, 206, 106, 0.2);
+}
+/* Glow on hover */
+*:hover {
+  background-color: rgba(122, 162, 247, 0.15);
+  box-shadow: inset 0 0 5px rgba(255, 255, 255, 0.05);
+}
+
+#battery.critical, #battery.warning {
+  background: linear-gradient(180deg, rgba(158, 206, 106, 0.1), transparent);
+  border-bottom: 1px solid rgba(158, 206, 106, 0.2);
+  color: #f38ba8;
+  animation: pulse-warn 2s infinite;
+}
+
+/* =========================================================
+   ANIMATIONS
+   ========================================================= */
+@keyframes pulse-warn {
+  0% { opacity: 1; }
+  50% { opacity: 0.7; }
+  100% { opacity: 1; }
+}
+
+@keyframes blink {
+  0% { background-color: transparent; }
+  100% { background-color: rgba(247, 118, 142, 0.4); color: #ffffff; }
+}

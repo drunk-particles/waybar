@@ -1,0 +1,133 @@
+@import "../omarchy/current/theme/waybar.css";
+
+/* =========================================================
+   BASE STYLE
+   ========================================================= */
+* {
+  color: @foreground;
+  border: none;
+  border-radius: 8px;
+  font-family: 'CaskaydiaMono Nerd Font', 'JetBrainsMono Nerd Font';
+  font-size: 13px;
+  font-weight: bold;
+}
+
+window#waybar {
+  background-color: rgba(26, 27, 38, 0.6); 
+  border-radius: 12px;
+  margin: 5px;
+}
+
+tooltip {
+  background: #1a1b26;
+  border: 1px solid alpha(@foreground, 0.3);
+  border-radius: 8px;
+  padding: 10px;
+}
+
+/* =========================================================
+   MODULE BOXES (Layout & Background)
+   ======================================================== */
+#backlight,
+#battery,
+#bluetooth,
+#cpu,
+#memory,
+#network,
+#pulseaudio,
+#clock,
+#workspaces,
+#custom-omarchy,
+#custom-update,
+#custom-updatespacman,
+#custom-exit,
+#tray,
+#mpris,
+#custom-weather,
+#custom-cpucat {
+  background-color: rgba(36, 40, 59, 0.5); 
+  padding: 2px 12px;
+  margin: 4px 3px;
+  border-radius: 8px;
+  transition: all 0.3s ease;
+}
+
+/* Hover effect */
+#battery:hover, #network:hover, #pulseaudio:hover, #custom-exit:hover, #clock:hover, #custom-weather:hover, #bluetooth:hover {
+  background-color: rgba(122, 162, 247, 0.3);
+  box-shadow: 0 0 10px rgba(122, 162, 247, 0.2);
+}
+
+/* =========================================================
+   VIBRANT MODULE COLORS
+   ========================================================= */
+#network { color: #7aa2f7; }             /* Soft Blue */
+#bluetooth { color: #b4befe; }           /* Lavender */
+#pulseaudio { color: #2ac3de; }          /* Cyan */
+#battery { color: #9ece6a; }             /* Green */
+#memory { color: #f7768e; }              /* Pink/Red */
+#cpu { color: #ff9e64; }                 /* Orange */
+#custom-weather { color: #e0af68; }      /* Yellow/Gold */
+#clock { color: #bb9af7; }               /* Purple */
+#mpris { color: #9d7cd8; }               /* Deep Purple */
+#custom-updatespacman, #custom-update { color: #f7768e; } /* Reddish Pink */
+#custom-omarchy { color: #73daca; }      /* Teal */
+
+#custom-cpucat {
+  font-family: "Waycat", monospace;
+  font-size: 23px;
+  color: #de9c54; /* Ginger Cat Color */
+}
+
+/* =========================================================
+   WORKSPACES
+   ========================================================= */
+#workspaces button {
+  padding: 0 8px;
+  color: @foreground;
+}
+
+#workspaces button.active {
+  background: rgba(122, 162, 247, 0.2);
+  color: #7aa2f7;
+  border-radius: 6px;
+}
+
+#workspaces button.urgent {
+  color: #f7768e;
+  background: rgba(247, 118, 142, 0.2);
+}
+
+/* =========================================================
+   SPECIAL STATES
+   ========================================================= */
+#custom-exit { color: #ff3434; }
+
+#network.disconnected, 
+#battery.critical, 
+#battery.warning {
+  background-color: rgba(243, 139, 168, 0.3);
+  color: #f38ba8;
+}
+
+#battery.charging {
+  color: #3fc54c;
+}
+
+#custom-screenrecording-indicator.active { 
+     color: #ed6262;
+     animation: blink 1s infinite alternate;
+}
+
+/* =========================================================
+   ANIMATIONS
+   ========================================================= */
+@keyframes blink {
+  0% { background-color: transparent; }
+  100% { background-color: #eb4034; color: #ffffff; }
+}
+
+@keyframes pulse-cava {
+  0% { opacity: 1; }
+  100% { opacity: 0.65; }
+}

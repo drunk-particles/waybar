@@ -1,0 +1,92 @@
+@import "../omarchy/current/theme/waybar.css";
+
+/* =========================================================
+   BASE STYLE
+   ========================================================= */
+* {
+  color: #e0def4; 
+  border: none;
+  border-radius: 11px;
+  font-family: 'CaskaydiaMono Nerd Font', 'JetBrainsMono Nerd Font';
+  font-size: 10px;
+  font-weight: 800; /* Heavier weight for maximum readability */
+  /* Pro Move: Stronger halo for light wallpapers */
+  text-shadow: 0px 0px 3px rgba(0, 0, 0, 1.0), 0px 0px 5px rgba(0, 0, 0, 0.8);
+}
+
+window#waybar {
+  background-color: transparent;
+}
+
+/* =========================================================
+   DARKER GLASS ISLANDS
+   ========================================================= */
+#backlight, #battery, #bluetooth, #cpu, #memory, #network, #pulseaudio, 
+#clock, #workspaces, #custom-omarchy, #custom-update, #custom-updatespacman, 
+#custom-exit, #tray, #mpris, #custom-weather, #custom-cpucat, #custom-cava {
+  padding: 3px 15px;
+  margin: 5px 6px;
+  border-radius: 12px;
+  
+  /* Deep Tint: Higher opacity (0.75) ensures readability on light walls */
+  background: linear-gradient(to bottom, rgba(20, 20, 30, 0.65), rgba(0, 0, 0, 0.85));
+  
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-bottom: 2px solid rgba(255, 255, 255, 0.2); 
+  
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.6);
+  transition: all 0.3s ease-in-out;
+}
+
+/* =========================================================
+   AESTHETIC ACCENTS
+   ========================================================= */
+#clock { color: #cba6f7; }
+#network { color: #89b4fa; }
+#battery.charging { color: #a6e3a1; }
+#custom-cpucat { font-family: "Waycat"; color: #fab387; font-size: 18px; }
+#custom-cava { color: #94e2d5; padding: 0 18px; }
+
+/* =========================================================
+   REFINED WORKSPACES
+   ========================================================= */
+#workspaces button {
+  color: rgba(255, 255, 255, 0.25);
+  margin: 0 2px;
+}
+
+#workspaces button.active {
+  color: #bb9af7;
+  background-color: rgba(187, 154, 247, 0.25);
+  border-bottom: 2px solid #bb9af7;
+}
+
+/* =========================================================
+   FIXED HOVER (No transform error)
+   ========================================================= */
+#backlight:hover, #battery:hover, #bluetooth:hover, #cpu:hover, 
+#memory:hover, #network:hover, #pulseaudio:hover, #clock:hover, 
+#custom-weather:hover, #custom-exit:hover, #mpris:hover, #custom-cpucat:hover {
+  background-color: rgba(255, 255, 255, 0.15);
+  /* Expert Move: Use negative margin to simulate the "lift" */
+  margin-top: 2px;
+  margin-bottom: 8px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.9);
+}
+
+/* =========================================================
+   SPECIAL STATES
+   ========================================================= */
+#custom-exit { color: #ff7a93; }
+
+#battery.critical, #battery.warning {
+  background-color: rgba(255, 75, 110, 0.4);
+  color: #ffb3c1;
+  border-bottom: 2px solid #ff4b6e;
+}
+
+tooltip {
+  background: rgba(20, 20, 30, 0.95);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 8px;
+}
