@@ -96,7 +96,7 @@ umm....it's not bad but not that good either. Maybe some modification is needed.
 
 
 
-## **Quick Install Command (Arch/AUR):**
+## **Dependencies Install Command (Arch/AUR):**
 
 ```
 yay -S waybar playerctl wttrbar waybar-module-pacman-updates-git cava pamixer bluetui btop ttf-nerd-fonts-symbols-common
