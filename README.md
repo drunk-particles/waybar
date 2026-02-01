@@ -64,7 +64,7 @@ yay -S waybar playerctl wttrbar waybar-module-pacman-updates-git cava pamixer bl
 
 My all-time favorite — starts from Omarchy's default CSS base, then adds refined modules, mystical icons, extra spacing, and subtle glows. Elegant, slightly arcane vibe. Perfect for a thoughtful, crafted look.
 
-[Ancient Runes Theme Screenshot](screenshots/ancient-runes.png) *(Add your screenshot here — e.g., full desktop with bar visible)*
+[Ancient Runes Theme Screenshot](screenshots/ancient-runes.png) ![](https://github.com/drunk-particles/waybar/blob/main/Ancient%20Runes/Ancient%20Runes.png)
 
 ### 2. Arctic Segments
 
