@@ -72,6 +72,14 @@ yay -S wttrbar
 
 
 
+## **Dependencies Install Command (Arch/AUR):**
+
+```
+yay -S waybar playerctl wttrbar waybar-module-pacman-updates-git cava pamixer bluetui btop ttf-nerd-fonts-symbols-common
+```
+
+
+
 ### Ancient Runes 
 
 ![](https://github.com/drunk-particles/waybar/blob/main/Ancient%20Runes/Ancient%20Runes.png)
@@ -91,14 +99,3 @@ I mostly use this one now. it's pretty good!
 ![](https://github.com/drunk-particles/waybar/blob/main/Cyber%20Pills/Cyber%20Pills1.png)
 
 umm....it's not bad but not that good either. Maybe some modification is needed.
-
-
-
-
-
-## **Dependencies Install Command (Arch/AUR):**
-
-```
-yay -S waybar playerctl wttrbar waybar-module-pacman-updates-git cava pamixer bluetui btop ttf-nerd-fonts-symbols-common
-```
-
