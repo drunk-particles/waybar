@@ -16,21 +16,21 @@ My Waybar configurations use additional packages such as wttrbar (weahter module
 yay -S waybar-module-pacman-updates-git
 yay -S wttrbar
 
-### Screenshot 
+### Ancient Runes 
 
 ![](https://github.com/drunk-particles/waybar/blob/main/Ancient%20Runes/Ancient%20Runes.png)
 
 first creation of my own Waybar config
 include weather, mpris, hyprland/window / pacman/update module / screenrecord button stop
 
-### Screenshot Frost-Drawer 2.6
+### Arctic Segments
 
-![](https://github.com/drunk-particles/waybar/blob/main/Frost-Drawer%202.6/Frost-Drawer%202.6.png)
+![](https://github.com/drunk-particles/waybar/blob/main/Arctic%20Segments/Arctic%20Segments.png)
 
 im using it right now....i was kinda bored of the previous one
 
-### Screenshot modern way 1.6
+### Cyber Pills
 
-![](https://github.com/drunk-particles/waybar/blob/main/modern%20way%201.6/screenshot-2026-01-26_15-49-05.png)
+![](https://github.com/drunk-particles/waybar/blob/main/Cyber%20Pills/Cyber%20Pills.png)
 
-![](https://github.com/drunk-particles/waybar/blob/main/Frost-Drawer%202.6/Frost-Drawer%202.7.png)
+![](https://github.com/drunk-particles/waybar/blob/main/Cyber%20Pills/Cyber%20Pills1.png)
