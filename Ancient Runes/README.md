@@ -2,5 +2,4 @@
 
 ![](https://github.com/drunk-particles/waybar/blob/main/Ancient%20Runes/Ancient%20Runes.png)
 
-first creation of my own Waybar config
-include weather, mpris, hyprland/window / pacman/update module / screenrecord button stop
+I loved this one. it's based on omarchy'd default waybar css, with some added modules and tweaking.
