@@ -26,10 +26,12 @@ I loved this one. it's based on omarchy'd default waybar css, with some added mo
 
 ![](https://github.com/drunk-particles/waybar/blob/main/Arctic%20Segments/Arctic%20Segments.png)
 
-im using it right now....i was kinda bored of the previous one
+I mostly use this one now. it's pretty good!
 
 ### Cyber Pills
 
 ![](https://github.com/drunk-particles/waybar/blob/main/Cyber%20Pills/Cyber%20Pills.png)
 
 ![](https://github.com/drunk-particles/waybar/blob/main/Cyber%20Pills/Cyber%20Pills1.png)
+
+umm....it's not bad but not that good either. Maybe some modification is needed.
