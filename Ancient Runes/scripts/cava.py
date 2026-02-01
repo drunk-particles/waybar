@@ -1,90 +1,99 @@
 #!/usr/bin/env python3
+import subprocess, json, sys, os, tempfile
 
-import subprocess
-import json
-import sys
-import os
-import tempfile
-
+# 2026 Nebula Palette (Polished)
+# Muted, sophisticated tones for 2026
 GRADIENT_COLORS = [
-    '#3e8fb0', '#9ccfd8', '#c4a7e7', '#ea9a97', '#f6c177', '#eb6f92'
+    '#b7bdf8', # Lavender
+    '#c6a0f6', # Mauve
+    '#f5bde6', # Pink
+    '#91d7e3', # Sky
+    '#8bd5ca', # Teal
+    '#8aadf4'  # Blue
 ]
-# BARS="⡀⡄⡆⡇⣇⣧⣷⣿⡿⣟⣯⣾⢿⣻⣽⣷"
-BARS = " ▂▃▄▅▆▇█"
-ASCII_MAX_RANGE = 9
 
-# CAVA configuration content
-CAVA_CONFIG_CONTENT = """
+# BARS restored with the baseline character (lower one eighth block)
+#BARS = "⣀⡀⡄⡆⡇⣇⣧⣷" 
+BARS = "▁▂▃▄▅▆▇█"
+# Note: ASCII_MAX_RANGE needs to match the length of BARS minus one
+ASCII_MAX_RANGE = 7 
+
+CAVA_CONFIG = """
 [general]
 bars = 8
 framerate = 60
 sensitivity = 100
-
 [input]
 method = pipewire
-
 [output]
 method = raw
 raw_target = /dev/stdout
 data_format = ascii
-ascii_max_range = 9
+ascii_max_range = 7
 """
 
-def generate_pango_gradient(line_of_data):
-    bars_data = line_of_data.strip().split(';')
+def generate_pango(line, frame_count):
+    bars_data = line.strip().split(';')
+    if not bars_data: return None
+
     pango_output = ""
-    for bar_str in bars_data:
+    for i, bar_str in enumerate(bars_data):
         try:
-            bar_value = int(bar_str)
-            if bar_value == 0:
-                color_index = 0
-            else:
-                color_index = min(int(bar_value * len(GRADIENT_COLORS) / ASCII_MAX_RANGE), len(GRADIENT_COLORS) - 1)
-            color = GRADIENT_COLORS[color_index]
-            char = BARS[min(bar_value, len(BARS) - 1)]
+            val = int(bar_str)
+            
+            # Use baseline character if value is zero
+            char = BARS[0] if val == 0 else BARS[min(val, len(BARS) - 1)]
+            
+            # Dynamic Color Shifting
+            color_step = (i + (frame_count // 10)) % len(GRADIENT_COLORS)
+            color = GRADIENT_COLORS[color_step]
+            
             pango_output += f'<span foreground="{color}">{char}</span>'
-        except ValueError:
+        except (ValueError, IndexError):
             continue
     return pango_output
 
 def run_cava():
-    # Create a temporary config file
     with tempfile.NamedTemporaryFile(mode='w+', delete=False, suffix='.conf') as f:
-        f.write(CAVA_CONFIG_CONTENT)
-        temp_config_path = f.name
+        f.write(CAVA_CONFIG)
+        temp_path = f.name
     
     process = None
+    frame_count = 0
+    silent_frames_threshold = 90 
+    silent_frames_count = 0
+
     try:
-        # Start CAVA using the temporary config file path
         process = subprocess.Popen(
-            ['cava', '-p', temp_config_path],
-            stdout=subprocess.PIPE,
-            stderr=subprocess.PIPE,
-            text=True,
-            bufsize=1
+            ['cava', '-p', temp_path],
+            stdout=subprocess.PIPE, text=True, bufsize=1
         )
         
-        # Read CAVA's stdout line by line forever
         for line in process.stdout:
-            pango_text = generate_pango_gradient(line)
-            json_output = json.dumps({"text": pango_text})
-            print(json_output)
+            frame_count += 1
+            pango_text = generate_pango(line, frame_count)
+            
+            is_silent_frame = all(v == '0' for v in line.strip().split(';') if v)
+
+            if is_silent_frame:
+                silent_frames_count += 1
+            else:
+                silent_frames_count = 0
+            
+            # If completely silent for 1.5s, send "" to hide the module
+            if silent_frames_count >= silent_frames_threshold:
+                print(json.dumps({"text": ""}))
+            else:
+                # Otherwise, send the text (which now includes the baseline)
+                print(json.dumps({"text": pango_text}))
+            
             sys.stdout.flush()
 
-    except FileNotFoundError:
-        print(json.dumps({"text": "CAVA not found!", "tooltip": "Please install CAVA"}))
-        sys.stdout.flush()
-    except Exception as e:
-        stderr_output = process.stderr.read() if process else "N/A"
-        error_msg = f"Script Error: {str(e)} STDERR: {stderr_output}"
-        print(json.dumps({"text": "ERR", "tooltip": error_msg}))
-        sys.stdout.flush()
+    except Exception:
+        print(json.dumps({"text": ""}))
     finally:
-        # Clean up the temporary file
-        if os.path.exists(temp_config_path):
-            os.remove(temp_config_path)
-        if process:
-            process.kill()
+        if os.path.exists(temp_path): os.remove(temp_path)
+        if process: process.kill()
 
 if __name__ == "__main__":
     run_cava()
