@@ -76,4 +76,5 @@ My current daily driver. Sharp, icy, modern segmented blocks with excellent info
 
 Cyberpunk-inspired with rounded neon "pill" modules and bold accents. It's decent as a starting point, but rough: some color clashes, inconsistent spacing, and glow can feel cheap on certain displays. High potential — needs contrast tweaks, smoother transitions, and tighter grouping to shine.
 
-[Cyber Pills Theme Screenshot](screenshots/cyber-pills.png) *(Add your screenshot here — capture the neon pills and cyber aesthetic)*
+![[Cyber Pills Theme Screenshot](screenshots/cyber-pills.png)](https://github.com/drunk-particles/waybar/blob/main/Cyber%20Pills/Cyber%20Pills1.png) 
+
