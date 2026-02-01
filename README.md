@@ -16,9 +16,9 @@ My Waybar configurations use additional packages such as wttrbar (weahter module
 yay -S waybar-module-pacman-updates-git
 yay -S wttrbar
 
-### Screenshot Ancient way 1.6
+### Screenshot 
 
-![](https://github.com/drunk-particles/waybar/blob/main/Ancient%20way%201.6/screenshot-2026-01-26_15-21-40.png)
+![](https://github.com/drunk-particles/waybar/blob/main/Ancient%20Runes/Ancient%20Runes.png)
 
 first creation of my own Waybar config
 include weather, mpris, hyprland/window / pacman/update module / screenrecord button stop
