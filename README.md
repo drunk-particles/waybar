@@ -70,7 +70,7 @@ My all-time favorite — starts from Omarchy's default CSS base, then adds refin
 
 My current daily driver. Sharp, icy, modern segmented blocks with excellent info density and breathing room. Clean, productive, and visually satisfying without excess flash.
 
-[Arctic Segments Theme Screenshot](screenshots/arctic-segments.png) *(Add your screenshot here — show the segmented pill-like modules clearly)*
+![[Arctic Segments Theme Screenshot](screenshots/arctic-segments.png)](https://github.com/drunk-particles/waybar/blob/main/Arctic%20Segments/Arctic%20Segments1.png)
 
 ### 3. Cyber Pills
 
