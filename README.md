@@ -1,7 +1,3 @@
-```
-![Ancient Runes Theme](screenshots/ancient-runes.png)
-```
-
 # Waybar Themes for Opinionated Omarchy
 
 A curated personal collection of Waybar styles tailored for **Omarchy** — the sleek, opinionated Arch + Hyprland experience. Dive in, customize, and make them your own!
