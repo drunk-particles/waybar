@@ -1,94 +1,69 @@
-/* =========================================================
-   Arctic Segments - Waybar Style
-   Designed by: Omarchy (Modified by Sami)
-    GitHub:https://github.com/drunk-particles/omarchy-dotfiles.git
-   ========================================================= */
-
-@import "../omarchy/current/theme/waybar.css";
+/* Arctic Segments - Compact Edition */
 @import "colors.css";
-/* =========================================================
-   CLEAN MINIMALIST BASE
-   ========================================================= */
+
+/* 1. Base & Global */
 * {
-  color: #e0def4; 
-  border: none;
-  border-radius: 8px; /* Slightly sharper corners for a modern feel */
+  color: @foreground; border: none; border-radius: 8px;
   font-family: 'CaskaydiaMono Nerd Font', 'JetBrainsMono Nerd Font';
-  font-size: 12px;
-  font-weight: 600; /* Reverted to 600: bold but not "chunky" */
-  text-shadow: none; /* Removed the heavy shadows */
+  font-size: 12px; font-weight: 600;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-window#waybar {
-  background-color: transparent;
-}
+/* Static Modules (No transitions) */
+#clock, #mpris, #workspaces button, #network { transition: none; }
+window#waybar { background: transparent; }
 
-/* =========================================================
-   THE "SMOKE" ISLANDS (Pro Readability Fix)
-   ========================================================= */
-#battery, #bluetooth, #cpu, #memory, #network, #pulseaudio, 
-#clock, #workspaces, #custom-omarchy, #custom-update, #custom-updatespacman, 
+/* 2. Layout (The Islands) */
+#battery, #bluetooth, #cpu, #memory, #network, #pulseaudio, #clock, 
+#workspaces, #custom-omarchy, #custom-update, #custom-updatespacman, #custom-screenrecording-indicator,
 #custom-exit, #tray, #mpris, #custom-weather, #custom-cpucat, #custom-cava {
-  padding: 2px 12px;
-  margin: 6px 4px;
-  
-  /* Expert approach: Instead of thick shadows, use a solid dark "smoke" base 
-     This guarantees readability on light walls without looking "glowy" */
-  background-color: rgba(15, 15, 20, 0.85);
-  
-  /* Hairline border - looks much cleaner than thick ones */
-  border: 1px solid rgba(255, 255, 255, 0.08);
-  
-  transition: background-color 0.2s ease;
+  padding: 2px 11px; /* Slightly slimmer height, wider width for a "pill" feel */
+  margin: 5px 3px;   /* Increased gap between islands for better separation */
+  background: @island-bg; 
+  border: 2px solid @island-border;
 }
 
-/* =========================================================
-   PASTEL ACCENTS (Desaturated for Class)
-   ========================================================= */
-#clock { color: #cba6f7; }
-#network { color: #89b4fa; }
-#battery.charging { color: #a6e3a1; }
-#custom-cpucat { font-family: "Waycat"; color: #94e2d5; font-size: 22px; }
+
+/* 3. States & Interactivity */
+#battery:hover, #bluetooth:hover, #cpu:hover, #memory:hover, #network:hover, 
+#pulseaudio:hover, #clock:hover, #custom-omarchy:hover, #custom-updatespacman:hover, #custom-exit:hover, 
+#mpris:hover, #custom-cpucat:hover, #custom-cava:hover, #custom-weather:hover, #custom-screenrecording-indicator:hover { background: @hover-tint; }
+
+/* Warnings & Critical (Unified) */
+#cpu.warning, #memory.warning, #network.wifi.low, #battery.warning { color: @yellow; }
+#cpu.critical, #memory.critical, #battery.critical, #network.disconnected { 
+  color: @red; background: rgba(237, 135, 150, 0.15); 
+}
+
+/* Functional Colors */
+#pulseaudio:not(.microphone).muted { color: @speaker-muted; }
+#pulseaudio.microphone.source-muted { color: @mic-muted; }
+#bluetooth.off, #bluetooth.disabled { color: @bt-off; }
+#battery.charging { color: @teal; }
+
+/* 4. Accents & Special Modules */
+#clock, #workspaces button.active { color: @mauve; }
+#network { color: @blue; }
+/* #cpu, #memory { color: @teal; } */
 #mpris { color: @pink; font-style: italic; }
-#custom-cava {
-  padding: 8px 8px 0px 8px;
-  border: 1px solid;
-  border-style: hidden;
-  border-radius: 8px;
-  font-size: 13px;
+#custom-cpucat { font-family: "Waycat"; color: @teal; font-size: 22px; }
+#custom-cava { padding: 8px 8px 0px 8px; font-size: 13px; }
+
+/* Optional: The blink animation using opacity instead of visibility */
+@keyframes blink {
+  0% { opacity: 1; }
+  50% { opacity: 0.3; }
+  100% { opacity: 1; }
 }
 
-/* =========================================================
-   WORKSPACES (Clean Underline)
-   ========================================================= */
-#workspaces button {
-  color: rgba(255, 255, 255, 0.3);
-  padding: 0 4px;
+#custom-screenrecording-indicator.recording {
+  background: rgba(237, 135, 150, 0.2);
+  border: 2px solid @red;
+  animation: blink 1.5s infinite; /* Smooth pulse */
 }
 
-#workspaces button.active {
-  color: #cba6f7;
-  /* Thin sharp underline instead of a box */
-  border-bottom: 2px solid #cba6f7;
-  border-radius: 0;
-}
 
-/* =========================================================
-   SUBTLE HOVER (No "Jumping")
-   ========================================================= */
-#custom-updatespacman:hover, #battery:hover, #bluetooth:hover, #cpu:hover, 
-#memory:hover, #network:hover, #pulseaudio:hover, #clock:hover, #custom-omarchy:hover,
-#custom-weather:hover, #custom-exit:hover, #mpris:hover {
-  /* Only change the tint, keep it static and professional */
-  background-color: rgba(255, 255, 255, 0.1);
-}
+/* 5. Workspaces */
+#workspaces button { color: rgba(202, 211, 245, 0.3); padding: 0 4px; }
+#workspaces button.active { border-bottom: 3px solid @mauve; border-radius: 0; }
 
-/* =========================================================
-   SPECIAL STATES
-   ========================================================= */
-#custom-exit { color: #eb6f92; }
-
-#battery.critical, #battery.warning {
-  background-color: rgba(235, 111, 146, 0.2);
-  color: #eb6f92;
-}

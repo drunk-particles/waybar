@@ -17,21 +17,24 @@
     "custom/omarchy",
     "cpu",
     "memory",
-    "custom/screenrecording-indicator",
     //"power-profiles-daemon",
-    "mpris"
+    "mpris",
+    "custom/screenrecording-indicator"
   ],
-  "modules-center": [
-    "custom/cava",
+"modules-center": [
     "custom/weather",
+    "custom/cava", // Left visualizer
     "clock",
+    "custom/cava", // Right visualizer (Waybar allows multiple instances)
     "custom/updatespacman"
-  ],
+],
+
   "modules-right": [
-    "custom/cpucat",
+    //"custom/cpucat",
     "group/tray-expander",
     "network",
     "bluetooth",
+    "pulseaudio#microphone",
     "pulseaudio",
     "battery",
     "custom/exit"
@@ -60,7 +63,10 @@
     "interval": 5,
     "format": "{usage}% 󰍛",
     "on-click": "timeout 20s omarchy-launch-floating-terminal-with-presentation btop",
-    "states": { "critical": 80 },
+     "states": {
+        "warning": 70,
+        "critical": 90
+    },
     "tooltip": false
   },
 
@@ -69,7 +75,10 @@
     "format": "{used} GiB",
     "format-alt": "{used} / {total} GiB",
     "tooltip": false,
-    "states": { "critical": 85 }
+      "states": {
+        "warning": 70,
+        "critical": 90
+    }
   },
 
 "mpris": {
@@ -127,19 +136,22 @@
     "tooltip": false,
     "interval": 60,
     "exec": "wttrbar --nerd --location chittagong",
-    "return-type": "json"
+    "return-type": "json",
+    //"on-click": "sleep 0.1 && hyprctl dispatch hyprexpo:expo toggle"
+
   },
 
   "clock": {
-    "format": "{:L%A %H:%M %p}",
+    "format": "{:L%A %I:%M %p}",
     "format-alt": "{:%d %B %Y}",
+    "tooltip": true,
     "tooltip-format": "<span>{calendar}</span>",
     "calendar": {
       "mode": "month",
       "mode-mon-col": 3,
       "on-click-right": "mode",
       "format": {
-        "mouth": "<span color='#ffead3'><b>{}</b></span>",
+        "month": "<span color='#ffead3'><b>{}</b></span>",
         "weekdays": "<span color='#ffcc66'><b>{}</b></span>",
         "today": "<span color='#ff6699'><b>{}</b></span>"
       }
@@ -151,7 +163,7 @@
     "format": "{} {icon}",
     "on-click": "omarchy-launch-floating-terminal-with-presentation omarchy-update",
     "return-type": "json",
-    "format-icons": { "has-updates": "👹", "updated": " " },
+    "format-icons": { "has-updates": "👻", "updated": " " },
     "exec-if": "which waybar-module-pacman-updates",
     "exec": "waybar-module-pacman-updates --interval-seconds 5 --network-interval-seconds 300"
   },
@@ -190,7 +202,7 @@
 
   "temperature": {
     "hwmon-path": "/sys/class/hwmon/hwmon6/temp1_input",
-    "format": "{temperatureC}° ",
+    "format": "{temperatureC}° ",
     "critical-threshold": 75,
     "format-critical": " {temperatureC}°C",
     "format-icons": ["", "", "", "", ""],
@@ -211,8 +223,8 @@
     "format": "{icon} ",
     "tooltip": false,
     "format-icons": {
-      "activated": "󰛊",
-      "deactivated": "󰾫"
+      "activated": "󰛊 ",
+      "deactivated": "󰾫 "
     }
   },
 
@@ -223,9 +235,10 @@
     "return-type": "json"
   },
 
+
   "network": {
     "format": "{icon}",
-    "format-wifi": " ", //{signalStrength}% | {bandwidthTotalBits}
+    "format-wifi": "  {bandwidthTotalBits}", //{signalStrength}% | {bandwidthTotalBits}
     "format-ethernet": "{ifname} 󰀂",
     "format-disconnected": "󰖪",
     "tooltip-format-wifi": "{essid} ({frequency} GHz)",
@@ -236,24 +249,27 @@
     "on-click": "timeout 5s omarchy-launch-wifi"
   },
 
-  "bluetooth": {
+"bluetooth": {
     "format": "",
     "format-disabled": "󰂲",
-    "format-off": "󰂲",
-    "format-connected": "",
+    "format-off": "  ",
+    "format-connected": "󰂱",
     "tooltip-format-connected": "{device_enumerate}",
     "tooltip-format-enumerate-connected-battery": "{device_alias} {device_battery_percentage}%",
     "tooltip-format-enumerate-connected": "{device_alias}",
-    "on-click": "timeout 10s omarchy-launch-floating-terminal-with-presentation bluetui"
-  },
+    "on-click": "rfkill toggle bluetooth", 
+    "on-click-right": "timeout 10s omarchy-launch-floating-terminal-with-presentation bluetui"
+},
+
 
   "pulseaudio": {
     "format": "{icon} {volume}%",
-    "on-click": "timeout 15s omarchy-launch-audio",
-    "on-click-right": "pamixer -t",
+    "max-volume": 130,
+    "on-click": "pamixer -t",
+    "on-click-right": "timeout 15s omarchy-launch-audio",
     "tooltip": false,
     "scroll-step": 5,
-    "format-muted": "Mute 🚫",
+    "format-muted": "🚫Muted",
     "format-icons": {
       "headphone": "󰋋",
       "hands-free": "󰋌",
@@ -264,6 +280,21 @@
       "default": ["", "", ""]
     }
   },
+
+"pulseaudio#microphone": {
+    "format": "{format_source}",
+    "format-source": " {volume}%",
+    "format-source-muted": " Muted",
+    "on-click": "pamixer --default-source -t",
+    "on-click-right": "timeout 15s omarchy-launch-audio",
+    "tooltip": false,
+    "on-scroll-up": "pamixer --default-source --increase 5",
+    "on-scroll-down": "pamixer --default-source --decrease 5",
+    "scroll-step": 5
+},
+
+
+
 
   "battery": {
     "format": "{capacity}% {icon}",
@@ -280,11 +311,11 @@
     "tooltip-format-charging": "full charge in {time} {power:>1.0f}W ↑",
     "interval": 5,
     "on-click": "omarchy-menu power",
-    "states": { "warning": 30, "critical": 20 }
+    "states": { "warning": 20, "critical": 10 }
   },
 
   "custom/exit": {
-    "format": "  ",
+    "format": "",
     "tooltip": false,
     "tooltip-format": "Power Menu",
     "on-click": "GSK_RENDERER=ngl omarchy-menu system"
